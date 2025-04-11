@@ -69,3 +69,11 @@ def student_details(request):
     return render(request, 'tuition_app/student_details.html', {
         'students': students,
     })
+
+def all_payment_details(request):
+    # Fetch all payment records from the database
+    payments = FeePayment.objects.all().order_by('-month')  # Order by month (latest first)
+
+    return render(request, 'tuition_app/all_payment_details.html', {
+        'payments': payments,
+    })

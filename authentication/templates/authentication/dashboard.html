@@ -1,14 +1,106 @@
 {% extends 'base.html' %}
 
-{% block title %}Dashboard - Tution centre Management WebApp{% endblock %}
+{% block title %}Dashboard - Tuition Centre Management WebApp{% endblock %}
 
 {% block content %}
-<div class="container">
-    <h2 class="text-center my-4">Welcome to Tution centre Management WebApp Dashboard</h2>
+<style>
+    /* Custom Card Styling */
+    .custom-card {
+        border-radius: 15px;
+        transition: transform 0.3s, box-shadow 0.3s;
+        padding: 20px;
+    }
+
+    .custom-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Custom Icon Styling */
+    .custom-icon {
+        font-size: 4rem;
+        margin-bottom: 15px;
+    }
+
+    /* Card Title Styling */
+    .card-title {
+        font-weight: bold;
+        font-size: 1.5rem;
+    }
+
+    /* Card Text Styling */
+    .card-text {
+        font-size: 1.1rem;
+        color: #6c757d;
+    }
+
+    /* Footer Styling */
+    footer {
+        margin-top: 50px;
+        font-size: 1rem;
+        color: #6c757d;
+    }
+</style>
+
+<div class="container mt-5">
+    <h1 class="text-center mb-5">Welcome to Tuition Centre Management WebApp</h1>
+
+    <!-- Dashboard Cards -->
+    <div class="row g-5">
+        <!-- Register a Student -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-lg border-0 custom-card">
+                <div class="card-body text-center">
+                    <i class="bi bi-person-plus-fill text-primary custom-icon"></i>
+                    <h5 class="card-title">Register a Student</h5>
+                    <p class="card-text">Add new students to the system.</p>
+                    <a href="{% url 'student_registration' %}" class="btn btn-primary btn-lg">Register Now</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Payment Tracking -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-lg border-0 custom-card">
+                <div class="card-body text-center">
+                    <i class="bi bi-cash-coin text-success custom-icon"></i>
+                    <h5 class="card-title">Payment Tracking</h5>
+                    <p class="card-text">Track and manage student payments.</p>
+                    <a href="{% url 'payment_tracking' %}" class="btn btn-success btn-lg">Go to Payments</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- View Student Details -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-lg border-0 custom-card">
+                <div class="card-body text-center">
+                    <i class="bi bi-people-fill text-secondary custom-icon"></i>
+                    <h5 class="card-title">Student Details</h5>
+                    <p class="card-text">View and manage student information.</p>
+                    <a href="{% url 'student_details' %}" class="btn btn-secondary btn-lg">View Details</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- All Payment Details -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-lg border-0 custom-card">
+                <div class="card-body text-center">
+                    <i class="bi bi-table text-info custom-icon"></i>
+                    <h5 class="card-title">All Payment Details</h5>
+                    <p class="card-text">View payment records for all students across all months.</p>
+                    <a href="{% url 'all_payment_details' %}" class="btn btn-info btn-lg">View Payments</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="row mt-5">
+        <div class="col text-center">
+            <p class="text-muted">Tuition Centre Management WebApp © 2025</p>
+        </div>
+    </div>
 </div>
-<a href="{% url 'student_registration' %}">
-    <button>Register a Student</button>
-</a>
-<a href="{% url 'payment_tracking' %}" class="btn btn-primary mt-3">Go to Payment Tracking</a>
-<a href="{% url 'student_details' %}" class="btn btn-secondary mt-3">View Student Details</a>
 {% endblock %}

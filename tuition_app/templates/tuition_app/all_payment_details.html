@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}All Payment Details{% endblock %}
+
+{% block content %}
+    <h1 class="text-center mb-4">All Payment Details</h1>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>Class</th>
+                <th>Month</th>
+                <th>Fee Amount</th>
+                <th>Status</th>
+                <th>Payment Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for payment in payments %}
+                <tr>
+                    <td>{{ payment.student.name }}</td>
+                    <td>Class {{ payment.student.student_class }}</td>
+                    <td>{{ payment.month }}</td>
+                    <td>{{ payment.fee_amount }}</td>
+                    <td>
+                        {% if payment.is_paid %}
+                            <span class="text-success">Paid</span>
+                        {% else %}
+                            <span class="text-danger">Unpaid</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if payment.payment_date %}
+                            {{ payment.payment_date }}
+                        {% else %}
+                            N/A
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
