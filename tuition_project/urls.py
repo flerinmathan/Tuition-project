@@ -22,4 +22,5 @@ urlpatterns = [
     path('', include('authentication.urls')),
     path('', lambda request: redirect('login')),
     path('admin/', admin.site.urls),
+    path('tuition/', include('tuition_app.urls')),
 ]
