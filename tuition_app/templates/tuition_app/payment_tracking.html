@@ -5,6 +5,24 @@
 {% block content %}
     <h1 class="text-center mb-4">Payment Tracking - {{ current_month }}</h1>
 
+    <!-- Display success messages -->
+    {% if messages %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <ul class="mb-0">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endif %}
+    
+    <!-- Generate Fees Button -->
+    <form method="POST" class="text-center mb-4">
+        {% csrf_token %}
+        <button type="submit" name="generate_fees" class="btn btn-primary">Generate Fees</button>
+    </form>
+
     <table class="table table-bordered">
         <thead>
             <tr>

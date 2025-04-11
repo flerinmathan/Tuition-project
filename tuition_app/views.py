@@ -31,6 +31,21 @@ def payment_tracking(request):
     # Get the current month and year
     current_month = now().strftime("%B %Y")  # e.g., "April 2025"
 
+    # Handle fee generation
+    if request.method == 'POST' and 'generate_fees' in request.POST:
+        students = Student.objects.all()
+        for student in students:
+            # Check if a FeePayment record already exists for this student and month
+            if not FeePayment.objects.filter(student=student, month=current_month).exists():
+                FeePayment.objects.create(
+                    student=student,
+                    month=current_month,
+                    fee_amount=200.00,  # Example fee amount
+                    is_paid=False
+                )
+        messages.success(request, f"Fee records for {current_month} have been generated successfully!")
+        return redirect('payment_tracking')
+
     # Fetch all payment records for the current month
     payments = FeePayment.objects.filter(month=current_month)
 
