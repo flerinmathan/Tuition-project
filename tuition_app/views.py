@@ -61,3 +61,11 @@ def mark_as_paid(request, payment_id):
     payment.payment_date = now().date()  # Record the payment date
     payment.save()
     return redirect('payment_tracking')  # Redirect back to the tracking page
+
+def student_details(request):
+    # Fetch all students from the database
+    students = Student.objects.all()
+
+    return render(request, 'tuition_app/student_details.html', {
+        'students': students,
+    })
