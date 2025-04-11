@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Payment Tracking{% endblock %}
+
+{% block content %}
+    <h1 class="text-center mb-4">Payment Tracking - {{ current_month }}</h1>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>Class</th>
+                <th>Month</th>
+                <th>Fee Amount</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for payment in payments %}
+                <tr>
+                    <td>{{ payment.student.name }}</td>
+                    <td>{{ payment.student.student_class }}</td>
+                    <td>{{ payment.month }}</td>
+                    <td>{{ payment.fee_amount }}</td>
+                    <td>
+                        {% if payment.is_paid %}
+                            Paid
+                        {% else %}
+                            Unpaid
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if not payment.is_paid %}
+                            <form action="{% url 'mark_as_paid' payment.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-success">Mark as Paid</button>
+                            </form>
+                        {% else %}
+                            <span class="text-success">Paid</span>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
